@@ -1,0 +1,9 @@
+# running in led_walker/src/
+read -formal led_walker.v
+# ... other files should go here
+prep -top led_walker
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

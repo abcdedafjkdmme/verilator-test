@@ -10,7 +10,7 @@ set(verilator_top_module led_walker)
 set(verilator_top_module_source led_walker.v)
 set(verilog_sources ${verilator_top_module_source} blinky.v)
 set(top_module led_walker)
-set(verilator_args --timescale 1ns/1ns )
+set(verilator_args --timescale 1ns/1ns -Wall )
 
 add_executable(verilator_test ${cxx_sources})
 

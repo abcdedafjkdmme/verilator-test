@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+<testsuite timestamp="2024-04-24T15:44:52" hostname="DESKTOP-ENV0RTD" package="led_walker" id="0" name="default" tests="8" errors="0" failures="0" time="0" skipped="0">
+<properties>
+<property name="os" value="Linux"/>
+<property name="expect" value="PASS"/>
+<property name="status" value="PASS"/>
+</properties>
+<testcase classname="default" name="build execution" time="0">
+</testcase>
+<testcase classname="default" name="Property ASSERT in led_walker at led_walker.v:100.9-100.18" time="0" type="ASSERT" location="led_walker.v:100.9-100.18" id="_witness_.check_assert_led_walker_v_100_31">
+</testcase>
+<testcase classname="default" name="Property ASSERT in led_walker at led_walker.v:137.5-137.32" time="0" type="ASSERT" location="led_walker.v:137.5-137.32" id="_witness_.check_assert_led_walker_v_137_51">
+</testcase>
+<testcase classname="default" name="Property ASSERT in led_walker at led_walker.v:138.15-138.51" time="0" type="ASSERT" location="led_walker.v:138.15-138.51" id="_witness_.check_assert_led_walker_v_138_53">
+</testcase>
+<testcase classname="default" name="Property ASSERT in led_walker at led_walker.v:147.97-147.121" time="0" type="ASSERT" location="led_walker.v:147.97-147.121" id="_witness_.check_assert_led_walker_v_147_83">
+</testcase>
+<testcase classname="default" name="Property ASSERT in led_walker at led_walker.v:148.105-148.132" time="0" type="ASSERT" location="led_walker.v:148.105-148.132" id="_witness_.check_assert_led_walker_v_148_90">
+</testcase>
+<testcase classname="default" name="Property ASSERT in led_walker at led_walker.v:149.86-149.113" time="0" type="ASSERT" location="led_walker.v:149.86-149.113" id="_witness_.check_assert_led_walker_v_149_97">
+</testcase>
+<testcase classname="default" name="Property ASSERT in led_walker at led_walker.v:150.105-150.139" time="0" type="ASSERT" location="led_walker.v:150.105-150.139" id="_witness_.check_assert_led_walker_v_150_105">
+</testcase>
+<testcase classname="default" name="Property ASSERT in led_walker at led_walker.v:151.91-151.132" time="0" type="ASSERT" location="led_walker.v:151.91-151.132" id="_witness_.check_assert_led_walker_v_151_112">
+</testcase>
+<system-out>SBY 15:44:52 [led_walker] Removing directory '/home/abrka/projects/test_our/led_walker'.
+SBY 15:44:52 [led_walker] Copy '/home/abrka/projects/test_our/led_walker.v' to '/home/abrka/projects/test_our/led_walker/src/led_walker.v'.
+SBY 15:44:52 [led_walker] engine_0: smtbmc
+SBY 15:44:52 [led_walker] base: starting process &quot;cd led_walker/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY 15:44:52 [led_walker] base: finished (returncode=0)
+SBY 15:44:52 [led_walker] prep: starting process &quot;cd led_walker/model; yosys -ql design_prep.log design_prep.ys&quot;
+SBY 15:44:52 [led_walker] prep: finished (returncode=0)
+SBY 15:44:52 [led_walker] smt2: starting process &quot;cd led_walker/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY 15:44:52 [led_walker] smt2: finished (returncode=0)
+SBY 15:44:52 [led_walker] engine_0.basecase: starting process &quot;cd led_walker; yosys-smtbmc --presat --unroll --noprogress -t 31  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY 15:44:52 [led_walker] engine_0.induction: starting process &quot;cd led_walker; yosys-smtbmc --presat --unroll -i --noprogress -t 31  --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-yw engine_0/trace_induct.yw --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY 15:44:52 [led_walker] engine_0.induction: ##   0:00:00  Solver: yices
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Solver: yices
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY 15:44:52 [led_walker] engine_0.induction: ##   0:00:00  Trying induction in step 31..
+SBY 15:44:52 [led_walker] engine_0.induction: ##   0:00:00  Trying induction in step 30..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY 15:44:52 [led_walker] engine_0.induction: ##   0:00:00  Trying induction in step 29..
+SBY 15:44:52 [led_walker] engine_0.induction: ##   0:00:00  Temporal induction successful.
+SBY 15:44:52 [led_walker] engine_0.induction: ##   0:00:00  Status: passed
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY 15:44:52 [led_walker] engine_0.induction: finished (returncode=0)
+SBY 15:44:52 [led_walker] engine_0.induction: Status returned by engine for induction: pass
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 14..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 14..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 15..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 15..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 16..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 16..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 17..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 17..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 18..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 18..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 19..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 19..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 20..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 20..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 21..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 21..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 22..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 22..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 23..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 23..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 24..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 24..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 25..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 25..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 26..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 26..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 27..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 27..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 28..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 28..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 29..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 29..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assumptions in step 30..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Checking assertions in step 30..
+SBY 15:44:52 [led_walker] engine_0.basecase: ##   0:00:00  Status: passed
+SBY 15:44:52 [led_walker] engine_0.basecase: finished (returncode=0)
+SBY 15:44:52 [led_walker] engine_0.basecase: Status returned by engine for basecase: pass
+SBY 15:44:52 [led_walker] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 15:44:52 [led_walker] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 15:44:52 [led_walker] summary: engine_0 (smtbmc) returned pass for basecase
+SBY 15:44:52 [led_walker] summary: engine_0 (smtbmc) returned pass for induction
+SBY 15:44:52 [led_walker] summary: engine_0 did not produce any traces
+SBY 15:44:52 [led_walker] summary: successful proof by k-induction.
+SBY 15:44:52 [led_walker] DONE (PASS, rc=0)
+</system-out>
+<system-err>
+</system-err>
+</testsuite>
+</testsuites>

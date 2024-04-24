@@ -1,7 +1,9 @@
 PCF_FILE        =  test.pcf
 VCD_FILE 		=  build/test.vcd
+SBY_FILE 		=  led_walker.sby
 SYNTH_V_SRCS    =  led_walker.v
 SYNTH_TOP_MODULE=  led_walker
+
 YOSYS_FLAGS     =  -p 'synth_ice40 -json $(OUTPUT_JSON)'
 NEXTPNR_FLAGS   =  --hx8k --package ct256 --pcf-allow-unconstrained
 
@@ -21,3 +23,6 @@ synth: $(SYNTH_V_SRCS)
 
 view_vcd: $(VCD_FILE)
 	gtkwave $(VCD_FILE)
+
+verify: 
+	sby -f $(SBY_FILE)

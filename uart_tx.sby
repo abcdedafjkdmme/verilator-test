@@ -6,10 +6,10 @@ depth 31
 smtbmc
 
 [script]
-read -formal led_walker.v
+read -formal uart_tx.v
 # ... other files should go here
-prep -top led_walker 
+prep -top uart_tx 
 
 [files]
 # list of all files and relative paths here 
-led_walker.v
+uart_tx.v

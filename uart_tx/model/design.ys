@@ -1,7 +1,7 @@
-# running in led_walker/src/
-read -formal led_walker.v
+# running in uart_tx/src/
+read -formal uart_tx.v
 # ... other files should go here
-prep -top led_walker
+prep -top uart_tx
 
 hierarchy -smtcheck
 rename -witness

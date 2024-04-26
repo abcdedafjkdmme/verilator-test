@@ -1,5 +1,5 @@
 #include <iostream>
-#include <Vled_walker.h>
+#include <Vuart_tx.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include <cassert>
@@ -82,6 +82,17 @@ void wishbone_write(ModuleType& tb, VerilatedVcdC& tfp, TickType& ticks, U addr,
 }
 
 
+void test_uart_tx(Vuart_tx& tb, VerilatedVcdC& tfp){
+	uint64_t ticks{};
+
+	tb.i_wr = 1;
+	tb.i_data = 0x2F;
+	for(int i = 0; i < 100; i++){
+		tick_module(ticks, tb, tfp);
+	}
+	
+}
+
 int main(int argc, char const *argv[])
 {
 
@@ -89,25 +100,18 @@ int main(int argc, char const *argv[])
 	Verilated::traceEverOn(true);
 
 	VerilatedVcdC tfp{};
-	Vled_walker tb{};
+	Vuart_tx tb{};
 
 	tb.trace(&tfp, 99);
 	tfp.open(VCD_FILE);
 
-	uint64_t ticks{};
+	
 
 	std::random_device dev;
     std::mt19937 rng(dev());
     std::uniform_int_distribution<std::mt19937::result_type> distribution(0,10000); // distribution in range [1, 6]
-
 	auto random_wishbone_write_addr = std::bitset<3>(distribution(rng)).to_ullong();
-	wishbone_write(tb, tfp, ticks, random_wishbone_write_addr, 1);
-	assert ( std::bitset<8>(tb.o_data).test(random_wishbone_write_addr) == 1);
-	tick_module(ticks, tb, tfp);
-	std::cout << std::bitset<8>(tb.o_data) << "\n";
-	tick_module(ticks, tb, tfp);
-	tick_module(ticks, tb, tfp);
-	tick_module(ticks, tb, tfp);
 
+	test_uart_tx(tb, tfp);
 	return 0;
 }

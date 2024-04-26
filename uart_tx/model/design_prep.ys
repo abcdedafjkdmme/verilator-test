@@ -1,4 +1,4 @@
-# running in led_walker/model/
+# running in uart_tx/model/
 read_ilang design.il
 scc -select; simplemap; select -clear
 memory_nordff

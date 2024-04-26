@@ -1,4 +1,4 @@
-# running in led_walker/model/
+# running in uart_tx/model/
 read_ilang design_prep.il
 hierarchy -smtcheck
 delete */t:$print

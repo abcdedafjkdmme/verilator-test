@@ -13,3 +13,4 @@ prep -top uart_tx
 [files]
 # list of all files and relative paths here 
 uart_tx.v
+uart_tx_comb.v

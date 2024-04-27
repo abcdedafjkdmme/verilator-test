@@ -147,8 +147,8 @@ module led_walker #(
     if ($past(i_stb) && (!$past(i_reset)) && (!$past(o_stall)) && $past(i_we) && is_past_valid) assert(r_state == WRITE);
     if ($past(i_stb) && $past(r_state) == WRITE && $past(r_counter) == (NUM_LEDS - 1) && is_past_valid) assert(r_state == FINISHED);
     if ($past(i_stb) && (!$past(i_we)) && is_past_valid && ($past(r_state) == READ)) assert(r_state == FINISHED);
-    if($past(i_stb) && $past(r_state) == IDLE && $past(i_we) && $past(r_counter) == 0 && is_past_valid) assert(r_counter == $past(i_addr));
-    if($past(i_stb) && $past(r_state) == WRITE && $past(r_counter) != 0 && is_past_valid) assert(o_data == (1 << $past(r_counter)));
+    if ($past(i_stb) && $past(r_state) == IDLE && $past(i_we) && $past(r_counter) == 0 && is_past_valid) assert(r_counter == $past(i_addr));
+    if ($past(i_stb) && $past(r_state) == WRITE && $past(r_counter) != 0 && is_past_valid) assert(o_data == (1 << $past(r_counter)));
     
   end
 

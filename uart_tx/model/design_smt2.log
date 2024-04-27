@@ -15,10 +15,13 @@ Input filename: design_prep.il
 
 2.1. Analyzing design hierarchy..
 Top module:  \uart_tx
+Used module:     \uart_tx_comb
 
 2.2. Analyzing design hierarchy..
 Top module:  \uart_tx
+Used module:     \uart_tx_comb
 Removed 0 unused modules.
+Module uart_tx_comb directly or indirectly contains formal properties -> setting "keep" attribute.
 Module uart_tx directly or indirectly contains formal properties -> setting "keep" attribute.
 
 3. Executing FORMALFF pass.
@@ -27,29 +30,84 @@ Module uart_tx directly or indirectly contains formal properties -> setting "kee
 
 5. Printing statistics.
 
-=== uart_tx ===
+=== uart_tx_comb ===
 
-   Number of wires:                 85
-   Number of wire bits:            633
-   Number of public wires:          19
-   Number of public wire bits:     374
-   Number of ports:                  5
-   Number of port bits:             12
+   Number of wires:                 18
+   Number of wire bits:             87
+   Number of public wires:           3
+   Number of public wire bits:      41
+   Number of ports:                  3
+   Number of port bits:             41
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:                 91
+   Number of cells:                 17
+     $assert                         1
+     $eq                             2
+     $gt                             1
+     $logic_and                      1
+     $logic_not                      1
+     $lt                             1
+     $mux                            8
+     $shiftx                         1
+     $sub                            1
+
+=== uart_tx ===
+
+   Number of wires:                 49
+   Number of wire bits:            318
+   Number of public wires:          11
+   Number of public wire bits:     118
+   Number of ports:                  6
+   Number of port bits:             13
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 53
      $add                            2
-     $anyinit                       12
+     $anyinit                        2
+     $assert                         7
+     $assume                         1
+     $eq                             5
+     $ff                             7
+     $gt                             1
+     $logic_and                      8
+     $logic_not                      3
+     $lt                             1
+     $mux                            9
+     $ne                             1
+     $not                            2
+     $reduce_bool                    1
+     $shiftx                         1
+     $sub                            1
+     uart_tx_comb                    1
+
+=== design hierarchy ===
+
+   uart_tx                           1
+     uart_tx_comb                    1
+
+   Number of wires:                 67
+   Number of wire bits:            405
+   Number of public wires:          14
+   Number of public wire bits:     159
+   Number of ports:                  9
+   Number of port bits:             54
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 69
+     $add                            2
+     $anyinit                        2
      $assert                         8
      $assume                         1
      $eq                             7
-     $ff                            17
-     $gt                             1
-     $logic_and                     11
+     $ff                             7
+     $gt                             2
+     $logic_and                      9
      $logic_not                      4
      $lt                             2
-     $mux                           18
+     $mux                           17
      $ne                             1
      $not                            2
      $reduce_bool                    1
@@ -61,8 +119,9 @@ Module uart_tx directly or indirectly contains formal properties -> setting "kee
 6.1. Executing BMUXMAP pass.
 
 6.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module uart_tx_comb.
 Creating SMT-LIBv2 representation of module uart_tx.
 
-End of script. Logfile hash: 24b8c26482, CPU: user 0.01s system 0.00s, MEM: 14.76 MB peak
+End of script. Logfile hash: 4be70d1711, CPU: user 0.00s system 0.01s, MEM: 14.86 MB peak
 Yosys 0.40+25 (git sha1 171577f90, clang++ 14.0.0-1ubuntu1.1 -fPIC -Os)
-Time spent: 65% 2x write_smt2 (0 sec), 24% 2x read_ilang (0 sec), ...
+Time spent: 62% 2x write_smt2 (0 sec), 25% 2x read_ilang (0 sec), ...

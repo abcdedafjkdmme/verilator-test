@@ -21,7 +21,7 @@ synth: $(SYNTH_V_SRCS)
 	nextpnr-ice40 $(NEXTPNR_FLAGS) --top $(SYNTH_TOP_MODULE) --pcf $(PCF_FILE) --json $(OUTPUT_JSON) --asc $(OUTPUT_ASC) 
 	icepack $(OUTPUT_ASC) $(OUTPUT_BIN)
 
-view_vcd: $(VCD_FILE)
+view_vcd:
 	gtkwave $(VCD_FILE)
 
 verify: 

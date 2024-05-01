@@ -1,8 +1,8 @@
 PCF_FILE        =  test.pcf
 VCD_FILE 		=  build/test.vcd
-SBY_FILE 		=  formal/uart_tx.sby
-SYNTH_V_SRCS    =  rtl/uart_tx.v
-SYNTH_TOP_MODULE=  uart_tx
+SBY_FILE 		=  formal/test.sby
+SYNTH_V_SRCS    =  rtl/cpu_control_unit.v
+SYNTH_TOP_MODULE=  cpu_control_unit
 
 YOSYS_FLAGS     =  -p 'synth_ice40 -json $(OUTPUT_JSON)'
 NEXTPNR_FLAGS   =  --hx8k --package ct256 --pcf-allow-unconstrained

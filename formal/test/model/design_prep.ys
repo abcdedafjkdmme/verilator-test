@@ -1,4 +1,4 @@
-# running in formal/uart_tx/model/
+# running in formal/test/model/
 read_ilang design.il
 scc -select; simplemap; select -clear
 memory_nordff

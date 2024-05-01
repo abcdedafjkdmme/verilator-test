@@ -1,4 +1,4 @@
-# running in formal/uart_tx/model/
+# running in formal/test/model/
 read_ilang design_prep.il
 hierarchy -smtcheck
 delete */t:$print

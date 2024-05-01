@@ -1,5 +1,5 @@
 #include <iostream>
-#include <Vuart_tx.h>
+#include <Vcpu_control_unit.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include <cassert>
@@ -87,7 +87,8 @@ void wishbone_write(ModuleType &tb, VerilatedVcdC &tfp, TickType &ticks, U addr,
 	tb.eval();
 }
 
-void test_uart_tx(Vuart_tx &tb, VerilatedVcdC &tfp)
+template<typename UART_Type>
+void test_uart_tx(UART_Type &tb, VerilatedVcdC &tfp)
 {
 	uint64_t ticks{};
 
@@ -146,12 +147,10 @@ int main(int argc, char const *argv[])
 	Verilated::traceEverOn(true);
 
 	VerilatedVcdC tfp{};
-	Vuart_tx tb{};
+	Vcpu_control_unit tb{};
 
 	tb.trace(&tfp, 99);
 	tfp.open(VCD_FILE);
-
-	test_uart_tx(tb, tfp);
 
 	printw("hlp");
 	refresh();

@@ -1,4 +1,4 @@
-# running in formal/uart_tx/src/
+# running in formal/test/src/
 read -formal uart_tx.v
 # ... other files should go here
 prep -top uart_tx

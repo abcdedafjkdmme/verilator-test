@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+<testsuite timestamp="2024-05-01T06:49:43" hostname="DESKTOP-ENV0RTD" package="uart_tx" id="0" name="default" tests="10" errors="0" failures="0" time="0" skipped="1">
+<properties>
+<property name="os" value="Linux"/>
+<property name="expect" value="PASS"/>
+<property name="status" value="PASS"/>
+</properties>
+<testcase classname="default" name="build execution" time="0">
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx at uart_tx.v:54.7-54.45" time="0" type="ASSERT" location="uart_tx.v:54.7-54.45" id="_witness_.check_assert_uart_tx_v_54_24">
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx at uart_tx.v:55.57-55.81" time="0" type="ASSERT" location="uart_tx.v:55.57-55.81" id="_witness_.check_assert_uart_tx_v_55_29">
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx at uart_tx.v:59.27-59.58" time="0" type="ASSERT" location="uart_tx.v:59.27-59.58" id="_witness_.check_assert_uart_tx_v_59_33">
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx at uart_tx.v:60.18-60.42" time="0" type="ASSERT" location="uart_tx.v:60.18-60.42" id="_witness_.check_assert_uart_tx_v_60_36">
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx at uart_tx.v:61.26-61.42" time="0" type="ASSERT" location="uart_tx.v:61.26-61.42" id="_witness_.check_assert_uart_tx_v_61_39">
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx at uart_tx.v:63.25-63.55" time="0" type="ASSERT" location="uart_tx.v:63.25-63.55" id="_witness_.check_assert_uart_tx_v_63_42">
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx at uart_tx.v:64.35-64.64" time="0" type="ASSERT" location="uart_tx.v:64.35-64.64" id="_witness_.check_assert_uart_tx_v_64_45">
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx at uart_tx.v:66.7-66.46" time="0" type="ASSERT" location="uart_tx.v:66.7-66.46" id="_witness_.check_assert_uart_tx_v_66_50">
+</testcase>
+<testcase classname="default" name="Property COVER in uart_tx at uart_tx.v:67.6-69.33" time="0" type="COVER" location="uart_tx.v:67.6-69.33" id="_witness_.check_cover_uart_tx_v_67_54">
+<skipped />
+</testcase>
+<testcase classname="default" name="Property ASSERT in uart_tx/uart_tx_comb_inst at uart_tx_comb.v:23.7-23.17" time="0" type="ASSERT" location="uart_tx_comb.v:23.7-23.17" id="_witness_.check_assert_uart_tx_comb_v_23_68">
+</testcase>
+<system-out>SBY  6:49:43 [formal/uart_tx] Removing directory '/home/abrka/projects/verilator-test/formal/uart_tx'.
+SBY  6:49:43 [formal/uart_tx] Copy '/home/abrka/projects/verilator-test/rtl/uart_tx.v' to '/home/abrka/projects/verilator-test/formal/uart_tx/src/uart_tx.v'.
+SBY  6:49:43 [formal/uart_tx] Copy '/home/abrka/projects/verilator-test/rtl/uart_tx_comb.v' to '/home/abrka/projects/verilator-test/formal/uart_tx/src/uart_tx_comb.v'.
+SBY  6:49:43 [formal/uart_tx] engine_0: smtbmc
+SBY  6:49:43 [formal/uart_tx] base: starting process &quot;cd formal/uart_tx/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY  6:49:43 [formal/uart_tx] base: finished (returncode=0)
+SBY  6:49:43 [formal/uart_tx] prep: starting process &quot;cd formal/uart_tx/model; yosys -ql design_prep.log design_prep.ys&quot;
+SBY  6:49:43 [formal/uart_tx] prep: finished (returncode=0)
+SBY  6:49:43 [formal/uart_tx] smt2: starting process &quot;cd formal/uart_tx/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY  6:49:43 [formal/uart_tx] smt2: finished (returncode=0)
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: starting process &quot;cd formal/uart_tx; yosys-smtbmc --presat --unroll --noprogress -t 31  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: starting process &quot;cd formal/uart_tx; yosys-smtbmc --presat --unroll -i --noprogress -t 31  --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-yw engine_0/trace_induct.yw --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2&quot;
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Solver: yices
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: ##   0:00:00  Solver: yices
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: ##   0:00:00  Trying induction in step 31..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: ##   0:00:00  Trying induction in step 30..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: ##   0:00:00  Trying induction in step 29..
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: ##   0:00:00  Temporal induction successful.
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: ##   0:00:00  Status: passed
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: finished (returncode=0)
+SBY  6:49:43 [formal/uart_tx] engine_0.induction: Status returned by engine for induction: pass
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 5..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 6..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 6..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 7..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 7..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 8..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 8..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 9..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 9..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 10..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 10..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 11..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 11..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 12..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 12..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 13..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 13..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 14..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 14..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 15..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 15..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 16..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 16..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 17..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 17..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 18..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 18..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 19..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 19..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 20..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 20..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 21..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 21..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 22..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 22..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 23..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 23..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 24..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 24..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 25..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 25..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 26..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 26..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 27..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 27..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 28..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 28..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 29..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 29..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assumptions in step 30..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Checking assertions in step 30..
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: ##   0:00:00  Status: passed
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: finished (returncode=0)
+SBY  6:49:43 [formal/uart_tx] engine_0.basecase: Status returned by engine for basecase: pass
+SBY  6:49:43 [formal/uart_tx] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  6:49:43 [formal/uart_tx] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  6:49:43 [formal/uart_tx] summary: engine_0 (smtbmc) returned pass for basecase
+SBY  6:49:43 [formal/uart_tx] summary: engine_0 (smtbmc) returned pass for induction
+SBY  6:49:43 [formal/uart_tx] summary: engine_0 did not produce any traces
+SBY  6:49:43 [formal/uart_tx] summary: successful proof by k-induction.
+SBY  6:49:43 [formal/uart_tx] DONE (PASS, rc=0)
+</system-out>
+<system-err>
+</system-err>
+</testsuite>
+</testsuites>

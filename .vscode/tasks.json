@@ -5,14 +5,20 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "Verilog Custom: synthesize",
+            "label": "Verilog Custom: Synthesize",
             "command": "make synth",
             "problemMatcher": []
         },
         {
             "type": "shell",
-            "label": "Verilog Custom: view vcd",
+            "label": "Verilog Custom: View Vcd",
             "command": "make view_vcd",
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Verilog Custom: Verify",
+            "command": "make verify",
             "problemMatcher": []
         }
     ]

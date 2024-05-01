@@ -1,4 +1,4 @@
-# running in uart_tx/model/
+# running in formal/uart_tx/model/
 read_ilang design.il
 scc -select; simplemap; select -clear
 memory_nordff

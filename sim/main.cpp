@@ -135,11 +135,12 @@ void test_uart_tx(Vuart_tx &tb, VerilatedVcdC &tfp)
 	}
 }
 
-/*
+
 int main(int argc, char const *argv[])
 {
 
-	initscr();
+	WINDOW* ncurses_win = initscr();
+	assert(ncurses_win);
 
 	Verilated::commandArgs(argc, argv);
 	Verilated::traceEverOn(true);
@@ -155,23 +156,11 @@ int main(int argc, char const *argv[])
 	printw("hlp");
 	refresh();
 
-	printw("dlkajdf");
+	std::cout << " dlkajdf";
 	refresh();
-	
 
+	getch();
 	endwin();
-
-	return 0;
-}
-*/
-
-int main()
-{	
-	initscr();			/* Start curses mode 		  */
-	printw("Hello World !!!");	/* Print Hello World		  */
-	refresh();			/* Print it on to the real screen */
-	getch();			/* Wait for user input */
-	endwin();			/* End curses mode		  */
 
 	return 0;
 }

@@ -67,5 +67,6 @@ module uart_tx #(
   end
 
   cover property(o_uart_tx == 1);
+  
 `endif
 endmodule

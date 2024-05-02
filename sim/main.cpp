@@ -1,5 +1,5 @@
 #include <iostream>
-#include <Vcpu_control_unit.h>
+#include <Vcpu_datapath.h>
 #include <verilated.h>
 #include <verilated_vcd_c.h>
 #include <cassert>
@@ -8,6 +8,8 @@
 #include <bitset>
 #include <random>
 #include <curses.h>
+#include <array>
+#include <vector>
 
 #define VCD_FILE "test.vcd"
 
@@ -87,14 +89,14 @@ void wishbone_write(ModuleType &tb, VerilatedVcdC &tfp, TickType &ticks, U addr,
 	tb.eval();
 }
 
-template<typename UART_Type>
+template <typename UART_Type>
 void test_uart_tx(UART_Type &tb, VerilatedVcdC &tfp)
 {
 	uint64_t ticks{};
 
 	tb.i_stb = 1;
 	tb.eval();
-	
+
 	tb.i_wr = 1;
 	tb.eval();
 
@@ -131,35 +133,90 @@ void test_uart_tx(UART_Type &tb, VerilatedVcdC &tfp)
 			assert(tb.o_uart_tx == test_data[7]);
 		else if (i == 9)
 			assert(tb.o_uart_tx == 1);
-		else if (i == 10) 
+		else if (i == 10)
 			assert(tb.o_busy == 0);
 	}
 }
 
+void exec_cpu_instr(uint16_t instr, uint16_t &a_reg, uint16_t &d_reg, std::array<uint16_t, 65536> &memory, uint16_t &pc, uint64_t &ticks, Vcpu_datapath &tb, VerilatedVcdC &tfp)
+{
+
+	tb.i_instr = instr;
+	tb.i_a_reg_data = a_reg;
+	tb.i_d_reg_data = d_reg;
+	tb.i_pc = pc;
+	tb.i_m = memory[tb.o_m_addr];
+
+	tick_module(ticks, tb, tfp);
+
+	a_reg = tb.o_a_we ? tb.o_a_reg_data : a_reg;
+	d_reg = tb.o_d_we ? tb.o_d_reg_data : d_reg;
+	pc = tb.o_pc;
+	memory[tb.o_m_addr] = tb.o_m_we ? tb.o_m : memory[tb.o_m_addr];
+
+}
+
+void print_cpu_data( uint16_t a_reg, uint16_t d_reg, uint16_t pc, const std::array<uint16_t, 65536> &memory, uint16_t m_addr, uint16_t alu_o)
+{
+	std::cout << std::hex;
+	
+	std::cout << "a reg       " << a_reg << "\n";
+	std::cout << "d reg       " << d_reg << "\n";
+	std::cout << "alu output  " << alu_o << "\n";
+	std::cout << "pc          " << pc << "\n";
+	std::cout << "memory [" << m_addr << "]  "  << memory[m_addr] << "\n\n";
+}
+void test_cpu_datpath(Vcpu_datapath &tb, VerilatedVcdC &tfp)
+{
+	uint64_t ticks{};
+
+	std::array<uint16_t, 65536> instructions{
+		0x0002,
+		0xec10,
+		0x0003,
+		0xe090,
+		0x0000,
+		0xe308
+	};
+	uint16_t a_reg{};
+	uint16_t d_reg{};
+	uint16_t pc{};
+	std::array<uint16_t, 65536> memory{};
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		std::cout << "instr       " << instructions[pc] << "\n";
+		exec_cpu_instr(instructions[pc], a_reg, d_reg, memory, pc, ticks, tb, tfp);
+		print_cpu_data( a_reg, d_reg, pc, memory, tb.o_m_addr, tb.cpu_datapath__DOT__alu_o);
+	}
+	
+	
+}
 
 int main(int argc, char const *argv[])
 {
 
-	WINDOW* ncurses_win = initscr();
-	assert(ncurses_win);
+	// WINDOW* ncurses_win = initscr();
+	// assert(ncurses_win);
 
 	Verilated::commandArgs(argc, argv);
 	Verilated::traceEverOn(true);
 
 	VerilatedVcdC tfp{};
-	Vcpu_control_unit tb{};
+	Vcpu_datapath tb{};
 
 	tb.trace(&tfp, 99);
 	tfp.open(VCD_FILE);
 
-	printw("hlp");
-	refresh();
+	test_cpu_datpath(tb, tfp);
 
-	std::cout << " dlkajdf";
-	refresh();
+	// printw("hlp");
+	// refresh();
 
-	getch();
-	endwin();
+	// refresh();
+
+	// getch();
+	// endwin();
 
 	return 0;
 }

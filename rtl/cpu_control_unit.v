@@ -1,22 +1,25 @@
 `default_nettype none
-#(parameter PC_WIDTH = 16;)
-module cpu_control_unit (
+module cpu_control_unit 
+(
     input wire [15:0] i_instr,
     input wire [15:0] i_alu_o,
     input wire [15:0] i_m,
     output reg [15:0] o_m,
-    output o_m_we,
+    output wire [15:0] o_m_addr,
+    output reg o_m_we,
     input wire [15:0] i_a_reg_data,
     output reg [15:0] o_a_reg_data,
     output reg o_a_we,
     input wire [15:0] i_d_reg_data,
     output reg [15:0] o_d_reg_data,
     output reg o_d_we,
+    input wire i_alu_jmp,
     output wire [15:0] o_alu_i_a_or_m,
     output wire [15:0] o_alu_i_d,
     output reg [5:0] o_alu_comp,
     output reg [2:0] o_alu_comp_jmp,
-    output reg [PC_WIDTH-]
+    output reg [15:0] o_pc,
+    output reg o_pc_we
 );
 
   `define INSTR_GET_COMP(instr) instr[11:6]
@@ -26,14 +29,21 @@ module cpu_control_unit (
   `define IS_A_INSTR(instr) (instr[15] == 0)
   `define IS_C_INSTR(instr) (instr[15:13] == 3'b111)
 
+  
+
   assign o_alu_i_a_or_m = `INSTR_GET_A(i_instr) ? i_m : i_a_reg_data;
   assign o_alu_i_d = i_d_reg_data;
   assign o_alu_comp = `INSTR_GET_COMP(i_instr);
   assign o_alu_comp_jmp = `INSTR_GET_JMP(i_instr);
 
+  assign o_m_addr = i_a_reg_data;
+
   assign o_m = i_alu_o;
   assign o_a_reg_data = `IS_A_INSTR(i_instr) ? i_instr : i_alu_o;
   assign o_d_reg_data = i_alu_o;
+
+  assign o_pc = i_a_reg_data;
+  assign o_pc_we = i_alu_jmp && `IS_C_INSTR(i_instr);
 
   always @(*) begin
 

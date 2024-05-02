@@ -1,7 +1,7 @@
 PCF_FILE        =  test.pcf
 VCD_FILE 		=  build/test.vcd
 SBY_FILE 		=  formal/test.sby
-SYNTH_V_SRCS    =  rtl/cpu_datapath.v rtl/cpu_control_unit.v rtl/alu.v
+SYNTH_V_SRCS    =  rtl/cpu_datapath.v rtl/cpu_control_unit.v rtl/alu.v rtl/program_counter.v rtl/register.v
 SYNTH_TOP_MODULE=  cpu_datapath
 
 YOSYS_FLAGS     =  -p 'synth_ice40 -json $(OUTPUT_JSON)'

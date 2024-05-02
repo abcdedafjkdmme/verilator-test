@@ -16,10 +16,11 @@ module cpu_control_unit
     input wire i_alu_jmp,
     output wire [15:0] o_alu_i_a_or_m,
     output wire [15:0] o_alu_i_d,
-    output reg [5:0] o_alu_comp,
-    output reg [2:0] o_alu_comp_jmp,
-    output reg [15:0] o_pc,
-    output reg o_pc_we
+    output wire [5:0] o_alu_comp,
+    output wire [2:0] o_alu_comp_jmp,
+    output wire [15:0] o_pc,
+    output wire o_pc_we,
+    output wire o_pc_increment
 );
 
   `define INSTR_GET_COMP(instr) instr[11:6]
@@ -44,6 +45,7 @@ module cpu_control_unit
 
   assign o_pc = i_a_reg_data;
   assign o_pc_we = i_alu_jmp && `IS_C_INSTR(i_instr);
+  assign o_pc_increment = !o_pc_we;
 
   always @(*) begin
 

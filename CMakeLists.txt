@@ -5,11 +5,11 @@ project(verilator_test_proj)
 
 
 set(CXX_INCLUDE_DIRS sim)
-set(CXX_SRCS sim/main.cpp)
+set(CXX_SRCS sim/main.cpp sim/misc.h)
 
 set(VERILATOR_TOP_MODULE cpu_datapath)
 set(VERILATOR_TOP_MODULE_SRC rtl/cpu_datapath.v)
-set(VERILATOR_SRCS ${VERILATOR_TOP_MODULE_SRC})
+set(VERILATOR_SRCS ${VERILATOR_TOP_MODULE_SRC} rtl/alu.v rtl/cpu_control_unit.v rtl/program_counter.v rtl/register.v)
 set(VERILATOR_INCLUDE_DIRS rtl)
 set(verilator_args --timescale 1ns/1ns -Wall )
 

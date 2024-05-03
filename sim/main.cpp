@@ -9,6 +9,7 @@
 #include <curses.h>
 #include <array>
 #include <vector>
+#include "misc.h"
 
 #define VCD_FILE "test.vcd"
 
@@ -31,18 +32,15 @@ void tick_module(TickType &ticks, ModuleType &tb, VerilatedVcdC &tfp)
 	tfp.flush();
 }
 
-
 void exec_cpu_instr(uint16_t instr, uint64_t &ticks, Vcpu_datapath &tb, VerilatedVcdC &tfp)
 {
 	tb.i_reset = 0;
 	tb.i_instr = instr;
-	
-	tick_module(ticks, tb, tfp);
 
+	tick_module(ticks, tb, tfp);
 }
 
-template<typename MemoryType>
-void print_cpu_data(uint16_t a_reg, uint16_t d_reg, uint16_t pc, const MemoryType &memory, uint16_t m_addr, uint16_t alu_o)
+void print_cpu_data(uint16_t a_reg, uint16_t d_reg, uint16_t pc, uint16_t m_addr, uint16_t mem_at_addr, uint16_t alu_o)
 {
 	std::cout << std::hex;
 
@@ -50,7 +48,7 @@ void print_cpu_data(uint16_t a_reg, uint16_t d_reg, uint16_t pc, const MemoryTyp
 	std::cout << "d reg       " << d_reg << "\n";
 	std::cout << "alu output  " << alu_o << "\n";
 	std::cout << "pc          " << pc << "\n";
-	std::cout << "memory [" << std::dec << m_addr << "]  " << std::hex << memory[m_addr] << "\n\n";
+	std::cout << "memory [" << std::dec << m_addr << "]  " << std::hex << mem_at_addr << "\n\n";
 }
 void test_cpu_datpath(Vcpu_datapath &tb, VerilatedVcdC &tfp)
 {
@@ -82,27 +80,57 @@ void test_cpu_datpath(Vcpu_datapath &tb, VerilatedVcdC &tfp)
 		0x000a,
 		0xe301,
 		0x0018,
-		0xea87
-	};
+		0xea87};
 
 	tb.cpu_datapath__DOT__block_ram_i__DOT__mem[0] = 0x34;
-	
+
+	uint16_t *mem = tb.cpu_datapath__DOT__block_ram_i__DOT__mem;
+	uint16_t prev_a_reg{};
+	uint16_t prev_d_reg{};
+	uint16_t prev_alu_out{};
+	uint16_t prev_pc{};
+	uint16_t prev_m_addr{};
+	uint16_t prev_mem_at_addr{};
+
 	for (size_t i = 0; i < 10; i++)
 	{
 		std::cout << "instr       " << instructions[tb.o_pc] << "\n";
 		exec_cpu_instr(instructions[tb.o_pc], ticks, tb, tfp);
-		uint16_t a_reg = tb.cpu_datapath__DOT__a_reg_i__DOT__r_data;
-		uint16_t d_reg = tb.cpu_datapath__DOT__d_reg_i__DOT__r_data;
-		print_cpu_data(a_reg, d_reg, tb.o_pc, tb.cpu_datapath__DOT__block_ram_i__DOT__mem , a_reg , tb.cpu_datapath__DOT__alu_o);
-	}
-	
-}
 
+		uint16_t new_a_reg = tb.cpu_datapath__DOT__a_reg_i__DOT__r_data;
+		uint16_t new_d_reg = tb.cpu_datapath__DOT__d_reg_i__DOT__r_data;
+		uint16_t new_alu_out = tb.cpu_datapath__DOT__alu_o;
+		uint16_t new_pc = tb.o_pc;
+		uint16_t new_m_addr = prev_a_reg;
+		uint16_t new_mem_at_addr = mem[prev_m_addr];
+
+		std::cout << std::hex;
+		std::cout << ((new_a_reg == prev_a_reg) ? term_color_reset : term_color_green)  << "a reg       " << new_a_reg << "\n";
+		std::cout << ((new_d_reg == prev_d_reg) ? term_color_reset : term_color_green)  << "d reg       " << new_d_reg << "\n";
+		std::cout << ((new_alu_out == prev_alu_out) ? term_color_reset : term_color_green)  << "alu output  " << new_alu_out << "\n";
+		std::cout << ((new_pc == prev_pc) ? term_color_reset : term_color_green)  << "pc          " << new_pc << "\n";
+
+		std::cout << term_color_reset << "memory [" 
+		<< std::dec << ((new_m_addr == prev_m_addr) ? term_color_reset : term_color_green) << new_m_addr
+		<< term_color_reset << "]  " 
+		<< std::hex << ((new_mem_at_addr == prev_mem_at_addr) ? term_color_reset : term_color_green) << new_mem_at_addr << "\n\n";
+
+		std::cout << std::hex;
+
+		prev_a_reg = new_a_reg;
+		prev_d_reg = new_d_reg;
+		prev_alu_out = new_alu_out;
+		prev_pc = new_pc;
+		prev_m_addr = new_m_addr;
+		prev_mem_at_addr = new_mem_at_addr;
+
+		// print_cpu_data(a_reg, d_reg, pc , a_reg , mem_at_addr , alu_out);
+	}
+}
 
 int main(int argc, char const *argv[])
 {
 
-	
 	Verilated::commandArgs(argc, argv);
 	Verilated::traceEverOn(true);
 	VerilatedVcdC tfp{};
@@ -112,30 +140,30 @@ int main(int argc, char const *argv[])
 
 	test_cpu_datpath(tb, tfp);
 
-	WINDOW* ncurses_default_win = initscr();
-	assert(ncurses_default_win);
+	// WINDOW* ncurses_default_win = initscr();
+	// assert(ncurses_default_win);
 
-	box(ncurses_default_win, 0, 0);
-	refresh();
+	// box(ncurses_default_win, 0, 0);
+	// refresh();
 
-	wprintw(ncurses_default_win, "hell");
-	refresh();
+	// wprintw(ncurses_default_win, "hell");
+	// refresh();
 
-	WINDOW *local_win;
-	local_win = newwin(10, 50, 5, 5);
-	box(local_win, 0 , 0);		/* 0, 0 gives default characters 
-					 * for the vertical and horizontal
-					 * lines			*/
-	wrefresh(local_win);		/* Show that box 		*/
+	// WINDOW *local_win;
+	// local_win = newwin(10, 50, 5, 5);
+	// box(local_win, 0 , 0);		/* 0, 0 gives default characters
+	// 				 * for the vertical and horizontal
+	// 				 * lines			*/
+	// wrefresh(local_win);		/* Show that box 		*/
 
-	wprintw(local_win, "child");
-	wrefresh(local_win);
-	wprintw(ncurses_default_win, "hello");
-	refresh();
-	wprintw(local_win, " child");
-	wrefresh(local_win);
-	getch();
-	endwin();
+	// wprintw(local_win, "child");
+	// wrefresh(local_win);
+	// wprintw(ncurses_default_win, "hello");
+	// refresh();
+	// wprintw(local_win, " child");
+	// wrefresh(local_win);
+	// getch();
+	// endwin();
 
 	return 0;
 }

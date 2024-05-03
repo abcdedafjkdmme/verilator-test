@@ -5,6 +5,16 @@
 #include <random>
 #include <bitset>
 
+
+const std::string term_color_red("\033[0;31m");
+const std::string term_color_green("\033[1;32m");
+const std::string term_color_yellow("\033[1;33m");
+const std::string term_color_cyan("\033[0;36m");
+const std::string term_color_magenta("\033[0;35m");
+const std::string term_color_reset("\033[0m");
+const std::string term_color_white("\x1B[37m");
+const std::string term_color_blue("\x1B[34m");
+
 template <typename ModuleType, typename TickType, typename T, typename U>
 T wishbone_read(ModuleType &tb, VerilatedVcdC &tfp, TickType &ticks, U addr)
 {

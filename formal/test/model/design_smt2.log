@@ -122,6 +122,6 @@ Module uart_tx directly or indirectly contains formal properties -> setting "kee
 Creating SMT-LIBv2 representation of module uart_tx_comb.
 Creating SMT-LIBv2 representation of module uart_tx.
 
-End of script. Logfile hash: 4be70d1711, CPU: user 0.00s system 0.01s, MEM: 14.69 MB peak
+End of script. Logfile hash: 4be70d1711, CPU: user 0.01s system 0.00s, MEM: 14.64 MB peak
 Yosys 0.40+25 (git sha1 171577f90, clang++ 14.0.0-1ubuntu1.1 -fPIC -Os)
-Time spent: 64% 2x write_smt2 (0 sec), 21% 2x read_ilang (0 sec), ...
+Time spent: 63% 2x write_smt2 (0 sec), 22% 2x read_ilang (0 sec), ...

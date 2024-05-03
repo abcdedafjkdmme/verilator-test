@@ -92,28 +92,28 @@ void test_cpu_datpath(Vcpu_datapath &tb, VerilatedVcdC &tfp)
 	uint16_t prev_m_addr{};
 	uint16_t prev_mem_at_addr{};
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < 50; i++)
 	{
-		std::cout << "instr       " << instructions[tb.o_pc] << "\n";
+		std::cout << term_color_reset << "instr       " << instructions[tb.o_pc] << "\n";
 		exec_cpu_instr(instructions[tb.o_pc], ticks, tb, tfp);
 
 		uint16_t new_a_reg = tb.cpu_datapath__DOT__a_reg_i__DOT__r_data;
 		uint16_t new_d_reg = tb.cpu_datapath__DOT__d_reg_i__DOT__r_data;
 		uint16_t new_alu_out = tb.cpu_datapath__DOT__alu_o;
 		uint16_t new_pc = tb.o_pc;
-		uint16_t new_m_addr = prev_a_reg;
-		uint16_t new_mem_at_addr = mem[prev_m_addr];
+		uint16_t new_m_addr = new_a_reg;
+		uint16_t new_mem_at_addr = mem[new_m_addr];
 
 		std::cout << std::hex;
 		std::cout << ((new_a_reg == prev_a_reg) ? term_color_reset : term_color_green)  << "a reg       " << new_a_reg << "\n";
 		std::cout << ((new_d_reg == prev_d_reg) ? term_color_reset : term_color_green)  << "d reg       " << new_d_reg << "\n";
 		std::cout << ((new_alu_out == prev_alu_out) ? term_color_reset : term_color_green)  << "alu output  " << new_alu_out << "\n";
-		std::cout << ((new_pc == prev_pc) ? term_color_reset : term_color_green)  << "pc          " << new_pc << "\n";
+		std::cout << ((new_pc == (prev_pc + 1)) ? term_color_reset : term_color_green)  << "pc          " << std::dec << new_pc << std::hex << "\n";
 
 		std::cout << term_color_reset << "memory [" 
 		<< std::dec << ((new_m_addr == prev_m_addr) ? term_color_reset : term_color_green) << new_m_addr
 		<< term_color_reset << "]  " 
-		<< std::hex << ((new_mem_at_addr == prev_mem_at_addr) ? term_color_reset : term_color_green) << new_mem_at_addr << "\n\n";
+		<< std::hex << (((new_mem_at_addr == prev_mem_at_addr) || (new_m_addr == prev_m_addr)) ? term_color_reset : term_color_green) << new_mem_at_addr << "\n\n";
 
 		std::cout << std::hex;
 
